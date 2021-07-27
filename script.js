@@ -39,18 +39,23 @@ function updateSelectedCount() {
 }
 
 // Get data from localstorage and populate UI
-// function populateUI() {
-//     const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')
-//     );
-//     console.log(selectedSeats)
-//     if(selectedSeats !== null && selectedSeats.length > 0) {
-//         seats.forEach((seat, index) => {
-//             if(selectedSeats.indexOf(index) > -1) {
+function populateUI() {
+    const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
 
-//             }
-//         })
-//     }
-// } 
+    console.log(selectedSeats)
+    if(selectedSeats !== null && selectedSeats.length > 0) {
+        seats.forEach((seat, index) => {
+            if(selectedSeats.indexOf(index) > -1) {
+                seat.classList.add('selected')
+            }
+        })
+    }
+
+    const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
+    if(selectedMovieIndex !== null) {
+        movieSelect.selectedIndex = selectedMovieIndex;
+    }
+} 
 
 // Movie select event
 movieSelect.addEventListener('change', e => {
@@ -70,3 +75,5 @@ container.addEventListener('click', (e) => {
 })
 
 
+// Initial count and total set
+updateSelectedCount();
